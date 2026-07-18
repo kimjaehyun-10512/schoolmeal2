@@ -36,7 +36,9 @@ async function createServer() {
       }
 
       // Query NEIS schoolInfo API
-      const url = `https://open.neis.go.kr/hub/schoolInfo?Type=json&pIndex=1&pSize=50&SCHUL_NM=${encodeURIComponent(name)}`;
+      const apiKey = process.env.NEIS_API_KEY;
+      const keyParam = apiKey ? `&KEY=${apiKey}` : '';
+      const url = `https://open.neis.go.kr/hub/schoolInfo?Type=json&pIndex=1&pSize=50&SCHUL_NM=${encodeURIComponent(name)}${keyParam}`;
       const response = await fetch(url);
       if (!response.ok) {
         throw new Error(`NEIS API error: ${response.statusText}`);
@@ -74,7 +76,9 @@ async function createServer() {
         return res.status(400).json({ error: '필수 파라미터가 누락되었습니다.' });
       }
 
-      const url = `https://open.neis.go.kr/hub/mealServiceDietInfo?Type=json&ATPT_OFCDC_SC_CODE=${officeCode}&SD_SCHUL_CODE=${schoolCode}&MLSV_YMD=${date}`;
+      const apiKey = process.env.NEIS_API_KEY;
+      const keyParam = apiKey ? `&KEY=${apiKey}` : '';
+      const url = `https://open.neis.go.kr/hub/mealServiceDietInfo?Type=json&ATPT_OFCDC_SC_CODE=${officeCode}&SD_SCHUL_CODE=${schoolCode}&MLSV_YMD=${date}${keyParam}`;
       const response = await fetch(url);
       if (!response.ok) {
         throw new Error(`NEIS API error: ${response.statusText}`);
