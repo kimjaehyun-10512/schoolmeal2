@@ -1,0 +1,6 @@
+{
+  "name": "School Meal Planner",
+  "description": "나이스 급식 API와 Gemini API를 결합하여 급식 정보와 유쾌한 AI 한줄평을 감상하는 급식 조회 웹앱",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
